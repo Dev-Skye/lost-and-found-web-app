@@ -18,7 +18,7 @@ function Navbar({ user }) {
         onClick={() => navigate("/")}
         className="font-bold text-lg text-[var(--primary)] cursor-pointer"
       >
-        iFOUND
+        OULU Find
       </h1>
 
       {/* LINKS */}
