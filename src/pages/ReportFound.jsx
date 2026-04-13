@@ -49,7 +49,7 @@ function ReportFound({user}) {
       name,
       description,
       location,
-      dateLost,
+      dateFound,
       contact,
       image: imageUrl, // ✅ REAL URL
       userId: auth.currentUser.uid,
@@ -61,7 +61,7 @@ function ReportFound({user}) {
     setName("");
     setDescription("");
     setLocation("");
-    setDateLost("");
+    setDateFound("");
     setImage(null);
     setContact("");
 
