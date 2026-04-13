@@ -17,6 +17,7 @@ function ReportFound({user}) {
   const [dateFound, setDateFound] = useState("");
   const [image, setImage] = useState(null);
   const [contact, setContact] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
   e.preventDefault();
@@ -163,8 +164,10 @@ alert(error.message);
           />
         </div>
 
-          <button className="w-full bg-[var(--primary)] text-white py-3 rounded-xl">
-            Submit
+          <button 
+           disabled={loading}
+          className="w-full bg-[var(--primary)] text-white py-3 rounded-xl">
+            {loading ? "Submitting..." : "Submit"}
           </button>
 
         </form>
