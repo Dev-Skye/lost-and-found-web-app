@@ -78,7 +78,7 @@ function Navbar({ user }) {
 
       {/* MOBILE MENU */}
       {isOpen && (
-        <div className="md:hidden flex flex-col items-center gap-4 mt-4 bg-white p-4 rounded-xl shadow-md">
+        <div className="md:hidden flex flex-col items-center gap-4 mt-4 bg-white p-4 rounded-xl shadow-md border-b">
 
           <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
           <Link to="/lost" onClick={() => setIsOpen(false)}>Lost</Link>
