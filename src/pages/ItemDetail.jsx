@@ -23,6 +23,7 @@ function ItemDetail({ user }) {
   const [editLocation, setEditLocation] = useState("");
 
   const collectionName = type === "found" ? "foundItems" : "lostItems";
+  const isOwner = user && item && user.uid === item.userId;
 
   // 🔥 FETCH ITEM
   useEffect(() => {
@@ -110,7 +111,7 @@ function ItemDetail({ user }) {
         {/* CONTENT */}
         <div className="mt-5">
 
-          {isEditing ? (
+          {isEditing && isOwner ? (
             <>
               <h1 className="text-2xl font-bold mb-4">Edit Item</h1>
 
@@ -166,7 +167,8 @@ function ItemDetail({ user }) {
                 📞 {item.contact || "No contact info"}
               </p>
 
-              {/* ACTIONS */}
+              {/* ACTIONS (ONLY OWNER) */}
+            {isOwner && (
               <div className="mt-6 space-x-3">
                 <button
                   onClick={() => {
@@ -187,6 +189,7 @@ function ItemDetail({ user }) {
                   Delete
                 </button>
               </div>
+            )}
             </>
           )}
 
