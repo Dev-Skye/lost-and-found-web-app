@@ -65,7 +65,7 @@ function ReportFound({user}) {
     setImage(null);
     setContact("");
 
-    navigate("/dashboard");
+    navigate("/confirmation");
 
   } catch (error) {
     console.error("FULL ERROR:", error);

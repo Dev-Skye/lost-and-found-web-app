@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import Confirmation from "./Confirmation";
 
 function ReportLost({user}) {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ function ReportLost({user}) {
     setImage(null);
     setContact("");
 
-    navigate("/dashboard");
+    navigate("/confirmation");
 
   } catch (error) {
     console.error("FULL ERROR:", error);
