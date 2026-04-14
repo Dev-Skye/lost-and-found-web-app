@@ -8,6 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 function Found({ user }) {
   const [foundItems, setFoundItems] = useState([]);
   const [loading, setLoading] = useState(true);
+   const [search, setSearch] = useState("");
 
   // 🔥 FETCH FOUND ITEMS FROM FIRESTORE
   useEffect(() => {
@@ -31,6 +32,12 @@ function Found({ user }) {
     fetchFoundItems();
   }, []);
 
+  const filteredItems = foundItems.filter((item) =>
+  item.name?.toLowerCase().includes(search.toLowerCase()) ||
+  item.location?.toLowerCase().includes(search.toLowerCase())
+);
+
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar user={user} />
@@ -51,6 +58,8 @@ function Found({ user }) {
         <div className="px-10 mb-6 text-center">
           <input
             type="text"
+             value={search}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Search found items..."
             className="w-full md:w-2/3 p-3 border rounded-xl focus:outline-none"
           />
@@ -61,14 +70,14 @@ function Found({ user }) {
 
           {loading ? (
             <p className="text-center text-gray-500">Loading...</p>
-          ) : foundItems.length === 0 ? (
-            <p className="text-center text-gray-500">
-              No found items yet.
-            </p>
+              ) : filteredItems.length === 0 ? (
+                <p className="text-center text-gray-500">
+                  No items match your search.
+                </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {foundItems.map((item) => (
-                <Itemcard key={item.id} item={item} type="found" />
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {filteredItems.map((item) => (
+        <Itemcard key={item.id} item={item} type="found" />
               ))}
             </div>
           )}
